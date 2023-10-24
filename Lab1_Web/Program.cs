@@ -29,6 +29,4 @@ app.UseUserEntityEndpoints();
 app.UseArticleEntityEndpoints();
 app.UseCommentEntityEndpoints();
 
-app.Run((context) => context.Response.WriteAsync("Hello World!"));
-
 app.Run();

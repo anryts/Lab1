@@ -51,8 +51,6 @@ public class UserEntityEndpoints
                 break;
             }
         }
-
-        await _next(context);
     }
 }
 
