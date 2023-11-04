@@ -1,0 +1,35 @@
+﻿@model List<Lab1_Data.Entities.User>
+@{
+    ViewBag.Title = "AllUsers";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    All users here.
+    @foreach(var user in Model)
+    {
+        <tr>
+            Name: @user.Name
+            Email: @user.Email
+        </tr>
+        <tr>
+            Comments: 
+            @foreach (var comment in user.Comments)
+            {
+                <tr>
+                    Id: @comment.Id
+                    Content: @comment.Content
+                </tr>
+            }
+        </tr>
+    }
+</div>
+</body>
+</html>

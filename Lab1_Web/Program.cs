@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>(serviceProvider =>
 {
@@ -23,10 +24,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 var app = builder.Build();
+
+app.UseStaticFiles();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.UseHttpsRedirection();
 
-app.UseUserEntityEndpoints();
-app.UseArticleEntityEndpoints();
-app.UseCommentEntityEndpoints();
+// app.UseUserEntityEndpoints();
+// app.UseArticleEntityEndpoints();
+// app.UseCommentEntityEndpoints();
 
 app.Run();
