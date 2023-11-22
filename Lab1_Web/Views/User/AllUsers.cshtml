@@ -13,23 +13,29 @@
 <body>
 <div>
     All users here.
-    @foreach(var user in Model)
-    {
-        <tr>
-            Name: @user.Name
-            Email: @user.Email
-        </tr>
-        <tr>
-            Comments: 
-            @foreach (var comment in user.Comments)
-            {
+    <ul>
+        @foreach (var user in Model)
+        {
+            <ul>
                 <tr>
-                    Id: @comment.Id
-                    Content: @comment.Content
+                    Name: @user.Name
+                    Email: @user.Email
                 </tr>
-            }
-        </tr>
-    }
+                <ul>
+                    <tr>
+                        Comments:
+                        @foreach (var comment in user.Comments)
+                        {
+                            <tr>
+                                Id: @comment.Id
+                                Content: @comment.Content
+                            </tr>
+                        }
+                    </tr>
+                </ul>
+            </ul>
+        }
+    </ul>
 </div>
 </body>
 </html>

@@ -4,5 +4,12 @@
     ViewBag.Title = "CreateUser";
     Layout = "_Layout";
 }
+//why i cant access this page from the browser?
+//because it is not a controller
 
-<h2>title</h2>
+<h2>Create user</h2>
+<form asp-action="CreateUser">
+    <input asp-for="Name" />
+    <input asp-for="Email" />
+    <input type="submit" value="Create" />
+</form>
