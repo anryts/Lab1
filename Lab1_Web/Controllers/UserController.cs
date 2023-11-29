@@ -26,6 +26,7 @@ public class UserController : Controller
     [HttpGet("users")]
     public async Task<IActionResult> GetAllUsers(int page = 1, int pageSize = 10, string? sortBy = null, bool isAsc = false)
     {
+        //TODO: add normal pagination and sorting by enum prob???
         var users = await _service.GetAllUsers(page, pageSize, sortBy, isAsc);
 
         return View("AllUsers", users);
