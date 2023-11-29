@@ -22,8 +22,8 @@ public class UserEntityEndpoints
         {
             case "/users":
             {
-                var users = await userService.GetAllUsers();
-                await context.Response.WriteAsJsonAsync(users);
+                // var users = await userService.GetAllUsers();
+                // await context.Response.WriteAsJsonAsync(users);
                 break;
             }
             case "/users/create":

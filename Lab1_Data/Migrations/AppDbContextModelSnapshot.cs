@@ -21,84 +21,88 @@ namespace Lab1_Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("id");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("AuthorId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("author_id");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("content");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("title");
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id")
-                        .HasName("pk_articles");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AuthorId")
-                        .HasDatabaseName("ix_articles_author_id");
+                    b.HasIndex("AuthorId");
 
-                    b.ToTable("articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("Lab1_Data.Entities.Comment", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("id");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("ArticleId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("article_id");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("AuthorId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("author_id");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("content");
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "ArticleId")
-                        .HasName("pk_comments");
+                    b.HasKey("Id", "ArticleId");
 
-                    b.HasIndex("ArticleId")
-                        .HasDatabaseName("ix_comments_article_id");
+                    b.HasIndex("ArticleId");
 
-                    b.HasIndex("AuthorId")
-                        .HasDatabaseName("ix_comments_author_id");
+                    b.HasIndex("AuthorId");
 
-                    b.ToTable("comments", (string)null);
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Lab1_Data.Entities.Gender", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
                 });
 
             modelBuilder.Entity("Lab1_Data.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("id");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("email");
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("GenderId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("name");
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id")
-                        .HasName("pk_users");
+                    b.HasKey("Id");
 
-                    b.ToTable("users", (string)null);
+                    b.HasIndex("GenderId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Lab1_Data.Entities.Article", b =>
@@ -107,8 +111,7 @@ namespace Lab1_Data.Migrations
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_articles_users_author_id");
+                        .IsRequired();
 
                     b.Navigation("Author");
                 });
@@ -119,24 +122,37 @@ namespace Lab1_Data.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_comments_articles_article_id");
+                        .IsRequired();
 
                     b.HasOne("Lab1_Data.Entities.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_comments_users_author_id");
+                        .IsRequired();
 
                     b.Navigation("Article");
 
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("Lab1_Data.Entities.User", b =>
+                {
+                    b.HasOne("Lab1_Data.Entities.Gender", "Gender")
+                        .WithMany("Users")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Gender");
+                });
+
             modelBuilder.Entity("Lab1_Data.Entities.Article", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("Lab1_Data.Entities.Gender", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Lab1_Data.Entities.User", b =>

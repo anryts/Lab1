@@ -8,6 +8,5 @@ public interface IUserService
     Task<Guid> CreateUser(UserCreateModel model);
     Task DeleteUser(UserDeleteModel model);
     Task UpdateUser(UserUpdateModel model);
-    Task<List<User>> GetAllUsers();
-    
+    Task<List<User>> GetAllUsers(int page, int pageSize, string? sortBy, bool? isAsc);
 }

@@ -20,5 +20,10 @@ internal class UserConfiguraiton : IEntityTypeConfiguration<User>
 
         builder.HasMany(x => x.Comments)
             .WithOne(x => x.Author);
+
+        builder.HasOne(x => x.Gender)
+            .WithMany(x => x.Users)
+            .HasForeignKey(x => x.GenderId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

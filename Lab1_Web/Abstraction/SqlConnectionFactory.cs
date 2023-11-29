@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.Sqlite;
 
 namespace Lab1_Web.Abstraction;
 
@@ -14,9 +14,9 @@ public class SqlConnectionFactory : ISqlConnectionFactory
     /// about connection string
     /// </summary>
     /// <returns></returns>
-    public SqlConnection CreateConnection()
+    public SqliteConnection CreateConnection()
     {
-        return new SqlConnection(
+        return new SqliteConnection(
             _configuration.GetConnectionString("DefaultConnection"));
     }
 }

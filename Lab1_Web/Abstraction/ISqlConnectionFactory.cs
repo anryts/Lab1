@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.Sqlite;
 
 namespace Lab1_Web.Abstraction;
 
@@ -9,5 +9,5 @@ public interface ISqlConnectionFactory
     /// about connection string
     /// </summary>
     /// <returns></returns>
-    SqlConnection CreateConnection();
+    SqliteConnection CreateConnection();
 }

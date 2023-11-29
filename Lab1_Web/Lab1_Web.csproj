@@ -10,7 +10,7 @@
 		<ProjectReference Include="..\Common\Common.csproj" />
 		<ProjectReference Include="..\Lab1_Data\Lab1_Data.csproj" />
 		<PackageReference Include="Dapper" Version="2.1.11" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.11" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
         <PrivateAssets>all</PrivateAssets>
@@ -35,6 +35,10 @@
       <AdditionalFiles Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
       <AdditionalFiles Include="Views\_ViewImports.cshtml" />
       <AdditionalFiles Include="Views\_ViewStart.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\User\UserPage.cshtml" />
     </ItemGroup>
 
 </Project>
