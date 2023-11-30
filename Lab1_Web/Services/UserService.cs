@@ -52,17 +52,24 @@ internal sealed class UserService : IUserService
 
     public async Task<List<User>> GetAllUsers(int page, int pageSize, string? sortBy, bool? isAsc)
     {
-        var users = await _context.Users
+        IQueryable<User> userQuery = sortBy switch
+        {
+            "Name" when isAsc!.Value => _context.Users.OrderBy(user => user.Name),
+            "Name" when !isAsc.Value => _context.Users.OrderByDescending(user => user.Name),
+            "Email" when isAsc!.Value => _context.Users.OrderBy(user => user.Email),
+            "Email" when !isAsc.Value => _context.Users.OrderByDescending(user => user.Email),
+            "Gender" when isAsc!.Value => _context.Users.OrderBy(user => user.GenderId),
+            "Gender" when !isAsc.Value => _context.Users.OrderBy(user => user.GenderId),
+            _  => _context.Users.OrderBy(user => user.Id),
+        };
+
+        var users  = await userQuery
             .Skip((page - 1) * pageSize)
-            .Take(page)
+            .Take(pageSize)
+            .AsNoTracking()
+            .Include(x => x.Gender)
             .ToListAsync();
 
-        if (sortBy != null)
-        {
-            users = isAsc == true
-                ? users.OrderBy(user => user.GetType().GetProperty(sortBy)?.GetValue(user, null)).ToList()
-                : users.OrderByDescending(user => user.GetType().GetProperty(sortBy)?.GetValue(user, null)).ToList();
-        }
 
         return users;
     }
