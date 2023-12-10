@@ -31,6 +31,7 @@ public class UserController : Controller
 
         return View("AllUsers", users);
     }
+
     [HttpGet]
     public async Task<IActionResult> CreateUser()
     {
@@ -42,9 +43,14 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateUser(UserCreateModel user)
     {
-        await _service.CreateUser(user);
+        if (ModelState.IsValid)
+        {
+            await _service.CreateUser(user);
 
-        return RedirectToAction("GetAllUsers");
+            return RedirectToAction("GetAllUsers");
+        }
+
+        return View("CreateUser", user);
     }
 
     [HttpGet]

@@ -12,10 +12,12 @@
         <ul>
             Name:
             <input asp-for="Name"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
         </ul>
         <ul>
             Email:
             <input asp-for="Email"/>
+            <span asp-validation-for="Email" class="text-danger"></span>
         </ul>
         <ul>
             <select asp-for="GenderId" asp-items="@ViewBag.Genders" class="form-control"></select>
