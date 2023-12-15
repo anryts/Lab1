@@ -1,8 +1,8 @@
 ﻿using Common.Models;
 using Dapper;
 using Lab1_Data;
-using Lab1_Data.Entities;
 using Lab1_Web.Abstraction;
+using Lab1_Web.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab1_Web.Services;

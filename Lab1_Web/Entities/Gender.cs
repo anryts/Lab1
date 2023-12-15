@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lab1_Data.Entities;
+namespace Lab1_Web.Entities;
 
 public class Gender
 {

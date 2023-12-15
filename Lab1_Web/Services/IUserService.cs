@@ -1,5 +1,5 @@
 ﻿using Common.Models;
-using Lab1_Data.Entities;
+using Lab1_Web.Entities;
 
 namespace Lab1_Web.Services;
 

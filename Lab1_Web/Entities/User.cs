@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace Lab1_Data.Entities;
+﻿namespace Lab1_Web.Entities;
 
 public class User
 {

@@ -1,8 +1,8 @@
-﻿using Lab1_Data.Entities;
+﻿using System.Reflection;
+using Lab1_Web.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
-namespace Lab1_Data;
+namespace Lab1_Web;
 
 public class AppDbContext : DbContext
 {
