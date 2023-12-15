@@ -12,6 +12,7 @@
         <ul>
             Name:
             <input asp-for="Name"/>
+            <!-- since we have a validation in the model, we can use this helper to display the error message -->
             <span asp-validation-for="Name" class="text-danger"></span>
         </ul>
         <ul>

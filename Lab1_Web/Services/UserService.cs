@@ -3,7 +3,6 @@ using Dapper;
 using Lab1_Data;
 using Lab1_Data.Entities;
 using Lab1_Web.Abstraction;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab1_Web.Services;
