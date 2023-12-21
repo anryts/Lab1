@@ -50,6 +50,16 @@ internal sealed class UserService : IUserService
         await _context.SaveChangesAsync();
     }
 
+    public async Task DeleteUser(Guid id)
+    {
+        var user = await _context.Users
+                       .FirstOrDefaultAsync(user => user.Id == id)
+                   ?? throw new Exception("User not found");
+
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<List<User>> GetAllUsers(int page, int pageSize, string? sortBy, bool? isAsc)
     {
         IQueryable<User> userQuery = sortBy switch
@@ -67,7 +77,6 @@ internal sealed class UserService : IUserService
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .AsNoTracking()
-            .Include(x => x.Gender)
             .ToListAsync();
 
 

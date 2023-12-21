@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<ProjectReference Include="..\Common\Common.csproj" />
 		<ProjectReference Include="..\Lab1_Data\Lab1_Data.csproj" />
 		<PackageReference Include="Dapper" Version="2.1.11" />
